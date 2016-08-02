@@ -1,0 +1,26 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:g="urn:import:com.google.gwt.user.client.ui">
+    <ui:style>
+
+    </ui:style>
+    <g:HTMLPanel>
+        <h2>Master page</h2>
+        <ul class="menu">
+            <li>
+                <g:Anchor ui:field="page1Link">
+                    Hello
+                </g:Anchor>
+            </li>
+            <li>
+                <g:Anchor ui:field="page2Link">
+                    Goodbye
+                </g:Anchor>
+            </li>
+        </ul>
+
+        <hr style="clear:both"/>
+        <g:SimplePanel ui:field="viewContainer"/>
+
+    </g:HTMLPanel>
+</ui:UiBinder>

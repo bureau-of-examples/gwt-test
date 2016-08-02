@@ -1,0 +1,12 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:g="urn:import:com.google.gwt.user.client.ui"
+             xmlns:c="urn:import:zhy2002.gwt.client.widget">
+    <ui:style>
+    </ui:style>
+    <g:HTMLPanel>
+        Goodbye <g:Label ui:field="userNameLabel" />
+        <hr/>
+        <c:StockWatcherWidget />
+    </g:HTMLPanel>
+</ui:UiBinder>
