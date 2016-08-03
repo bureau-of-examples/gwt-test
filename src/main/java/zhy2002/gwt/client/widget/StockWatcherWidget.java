@@ -42,6 +42,8 @@ public class StockWatcherWidget extends Composite {
         initStocksFlexTable();
         setupRefreshTimer();
         newSymbolTextBox.setFocus(true);
+        this.addStyleName("gwt-widget" );
+        this.addStyleName(this.getClass().getSimpleName());
     }
 
     private void initStocksFlexTable() {
