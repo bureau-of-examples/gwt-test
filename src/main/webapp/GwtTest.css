@@ -1,4 +1,8 @@
 /** Add css rules here for your application. */
+/* Formatting specific to the StockWatcher application */
+body {
+    padding: 10px;
+}
 
 /** Example rules used by the template application (remove for your app) */
 h1 {
@@ -41,3 +45,5 @@ h1 {
 .menu li a {
     cursor: pointer;
 }
+
+
