@@ -1,0 +1,32 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:g="urn:import:com.google.gwt.user.client.ui"
+             xmlns:c="urn:import:zhy2002.gwt.client.widget">
+    <ui:style>
+    </ui:style>
+    <g:HTMLPanel>
+        <div>
+            <div>
+                <label>Phrase:</label>
+                <g:TextBox ui:field="phraseTextBox"/>
+            </div>
+            <div>
+                <label>Title:</label>
+                <g:TextBox ui:field="titleTextBox"/>
+            </div>
+            <div>
+                <label>Name:</label>
+                <g:TextBox ui:field="nameTextBox"/>
+            </div>
+            <div>
+                <label>Repeat:</label>
+                <g:IntegerBox ui:field="repeatIntegerBox"/>
+            </div>
+            <div>
+                <g:Button ui:field="okButton" text="Ok"/>
+            </div>
+        </div>
+        <hr/>
+        <c:GreetingWidget ui:field="greetingWidget"/>
+    </g:HTMLPanel>
+</ui:UiBinder>

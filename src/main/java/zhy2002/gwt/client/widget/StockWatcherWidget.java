@@ -15,7 +15,6 @@ import com.google.gwt.user.client.ui.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class StockWatcherWidget extends Composite {
 
