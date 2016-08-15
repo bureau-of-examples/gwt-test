@@ -1,4 +1,4 @@
-package zhy2002.gwt.server;
+package zhy2002.gwt.server.rpc;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import zhy2002.gwt.client.model.StockPrice;

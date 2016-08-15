@@ -8,11 +8,11 @@
     <!-- Servlets -->
     <servlet>
         <servlet-name>greetServlet</servlet-name>
-        <servlet-class>zhy2002.gwt.server.GreetingServiceImpl</servlet-class>
+        <servlet-class>zhy2002.gwt.server.rpc.GreetingServiceImpl</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>stockPriceServlet</servlet-name>
-        <servlet-class>zhy2002.gwt.server.StockPriceServiceImpl</servlet-class>
+        <servlet-class>zhy2002.gwt.server.rpc.StockPriceServiceImpl</servlet-class>
     </servlet>
 
     <servlet-mapping>

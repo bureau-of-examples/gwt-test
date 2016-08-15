@@ -1,7 +1,6 @@
 package zhy2002.gwt.client.navigation;
 
 import com.google.gwt.activity.shared.ActivityManager;
-import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.place.shared.Place;
@@ -45,7 +44,7 @@ public class MasterPageImpl extends Composite implements MasterPage {
 
         // Start ActivityManager for the main widget with our ActivityMapper
         ActivityManager activityManager = new ActivityManager(appActivityMapper, eventBus);
-        if(viewContainer == null)
+        if (viewContainer == null)
             throw new RuntimeException("oh no");
         activityManager.setDisplay(viewContainer);
 
@@ -68,5 +67,10 @@ public class MasterPageImpl extends Composite implements MasterPage {
     @UiHandler("page2Link")
     void handlePage2LinkClick(ClickEvent e) {
         placeController.goTo(new GreetingPlace("goodbye", "John"));
+    }
+
+    @UiHandler("page3Link")
+    void handlePage3LinkClick(ClickEvent e) {
+        placeController.goTo(new PagePlace("employee"));
     }
 }

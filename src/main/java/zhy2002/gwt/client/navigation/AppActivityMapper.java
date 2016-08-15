@@ -5,6 +5,7 @@ import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.place.shared.Place;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
+import zhy2002.gwt.client.page.EmployeePresenter;
 import zhy2002.gwt.client.page.GoodbyePresenter;
 import zhy2002.gwt.client.page.HelloPresenter;
 
@@ -14,6 +15,8 @@ public class AppActivityMapper implements ActivityMapper {
     private Provider<HelloPresenter> helloPresenterProvider;
     @Inject
     private Provider<GoodbyePresenter> goodbyePresenterProvider;
+    @Inject
+    private Provider<EmployeePresenter> employeePresenterProvider;
 
     @Override
     public Activity getActivity(Place place) {
@@ -28,6 +31,13 @@ public class AppActivityMapper implements ActivityMapper {
                 goodbyePresenter.init(greetingPlace);
                 goodbyePresenter.init(greetingPlace);
                 return goodbyePresenter;
+            }
+        } else if (place instanceof PagePlace) {
+            PagePlace pagePlace = (PagePlace) place;
+            if ("employee".equals(((PagePlace) place).getPageName())) {
+                EmployeePresenter employeePresenter = employeePresenterProvider.get();
+                employeePresenter.init(pagePlace);
+                return employeePresenter;
             }
         }
         return null;

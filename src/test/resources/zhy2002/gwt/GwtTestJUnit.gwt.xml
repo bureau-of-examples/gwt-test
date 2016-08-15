@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<module rename-to="GwtTest">
-  <!-- Inherit our applications main module.                      -->
-  <inherits name='zhy2002.gwt.GwtTest' />
-
-  <!-- Specify the path to any remote services.                   -->
-  <servlet path="/GwtTest/greet" class="zhy2002.gwt.server.GreetingServiceImpl" />
-
-</module>

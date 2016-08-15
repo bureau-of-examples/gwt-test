@@ -1,4 +1,4 @@
-package zhy2002.gwt.client;
+package zhy2002.gwt.client.rpc;
 
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;

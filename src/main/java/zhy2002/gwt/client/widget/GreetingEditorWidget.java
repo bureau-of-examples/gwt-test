@@ -9,8 +9,8 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
-import zhy2002.gwt.client.GreetingService;
-import zhy2002.gwt.client.GreetingServiceAsync;
+import zhy2002.gwt.client.rpc.GreetingService;
+import zhy2002.gwt.client.rpc.GreetingServiceAsync;
 import zhy2002.gwt.client.model.Greeting;
 
 /**

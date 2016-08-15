@@ -17,6 +17,11 @@
                     Goodbye
                 </g:Anchor>
             </li>
+            <li>
+                <g:Anchor ui:field="page3Link">
+                    Employee
+                </g:Anchor>
+            </li>
         </ul>
 
         <hr style="clear:both"/>

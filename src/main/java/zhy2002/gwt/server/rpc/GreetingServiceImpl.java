@@ -1,6 +1,6 @@
-package zhy2002.gwt.server;
+package zhy2002.gwt.server.rpc;
 
-import zhy2002.gwt.client.GreetingService;
+import zhy2002.gwt.client.rpc.GreetingService;
 import zhy2002.gwt.shared.FieldVerifier;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
