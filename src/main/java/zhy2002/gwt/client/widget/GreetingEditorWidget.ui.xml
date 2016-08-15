@@ -24,6 +24,7 @@
             </div>
             <div>
                 <g:Button ui:field="okButton" text="Ok"/>
+                <g:Button ui:field="serverButton" text="Call server" />
             </div>
         </div>
         <hr/>

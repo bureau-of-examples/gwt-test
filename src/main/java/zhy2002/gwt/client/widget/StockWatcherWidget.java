@@ -6,12 +6,17 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.event.dom.client.KeyDownEvent;
+import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
+import zhy2002.gwt.client.model.StockPrice;
+import zhy2002.gwt.client.rpc.StockPriceService;
+import zhy2002.gwt.client.rpc.StockPriceServiceAsync;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +39,8 @@ public class StockWatcherWidget extends Composite {
     @UiField
     TextBox newSymbolTextBox;
 
+    private StockPriceServiceAsync stockPriceService;
+
     @Override
     protected void onLoad() {
         super.onLoad();
@@ -41,7 +48,7 @@ public class StockWatcherWidget extends Composite {
         initStocksFlexTable();
         setupRefreshTimer();
         newSymbolTextBox.setFocus(true);
-        this.addStyleName("gwt-widget" );
+        this.addStyleName("gwt-widget");
         this.addStyleName(this.getClass().getSimpleName());
     }
 
@@ -59,28 +66,47 @@ public class StockWatcherWidget extends Composite {
                 refreshStocks();
             }
         };
-        refreshTimer.scheduleRepeating(3000);
+        refreshTimer.scheduleRepeating(8000);
+    }
+
+    private String[] getCurrentSymbols() {
+        String[] result = new String[stocks.size()];
+        stocks.toArray(result);
+        return result;
     }
 
     private void refreshStocks() {
-        for (int i = 0; i < stocks.size(); i++) {
-            double newPrice = Math.random() * 100;
-            String oldPriceText = stocksFlexTable.getText(i + 1, 1);
-            String delta = "N/A";
-            if (oldPriceText != null && oldPriceText.length() != 0) {
-                double oldPrice = Double.parseDouble(oldPriceText);
-                if (oldPrice > 0) {
-                    delta = String.valueOf((newPrice - oldPrice) / oldPrice * 100);
+        if (stockPriceService == null) {
+            stockPriceService = GWT.create(StockPriceService.class);
+        }
+
+        if (stocks.isEmpty())
+            return;
+
+        stockPriceService.getPrices(getCurrentSymbols(), new AsyncCallback<StockPrice[]>() {
+            @Override
+            public void onFailure(Throwable caught) {
+                Window.alert("Refresh price request failed: " + caught.getMessage());
+            }
+
+            @Override
+            public void onSuccess(StockPrice[] stocks) {
+                for (int i = 0; i < stocks.length; i++) {
+                    stocksFlexTable.setText(i + 1, 1, NumberFormat.getCurrencyFormat().format(stocks[i].getPrice()));
+                    stocksFlexTable.setText(i + 1, 2, NumberFormat.getDecimalFormat().format(stocks[i].getChange()) + "%");
                 }
             }
-            stocksFlexTable.setText(i + 1, 1, String.valueOf(newPrice));
-            stocksFlexTable.setText(i + 1, 2, delta);
-        }
+        });
     }
 
     @UiHandler("addStockButton")
     void handleAddStockButtonClick(ClickEvent e) {
         addStock();
+    }
+
+    @UiHandler("addFromServerButton")
+    void handleAddFromServerButtonClick(ClickEvent e) {
+        addFromServer();
     }
 
     @UiHandler("newSymbolTextBox")
@@ -90,12 +116,16 @@ public class StockWatcherWidget extends Composite {
         }
     }
 
+    private void addFromServer() {
+        refreshStocks();
+    }
+
     private void addStock() {
         final String symbol = newSymbolTextBox.getText().toUpperCase().trim();
         newSymbolTextBox.setFocus(true);
 
         // Stock code must be between 1 and 10 chars that are numbers, letters, or dots.
-        if (!symbol.matches("^[0-9A-Z\\.]{1,10}$")) {
+        if (!symbol.matches("^[0-9A-Z.]{1,10}$")) {
             Window.alert("'" + symbol + "' is not a valid symbol.");
             newSymbolTextBox.selectAll();
             return;

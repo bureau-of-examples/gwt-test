@@ -6,7 +6,11 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
+import zhy2002.gwt.client.GreetingService;
+import zhy2002.gwt.client.GreetingServiceAsync;
 import zhy2002.gwt.client.model.Greeting;
 
 /**
@@ -38,6 +42,8 @@ public class GreetingEditorWidget extends Composite {
 
     private GreetingEditor editor;
 
+    private GreetingServiceAsync greetingService;
+
     public GreetingEditorWidget() {
         initWidget(uiBinder.createAndBindUi(this));
     }
@@ -59,5 +65,23 @@ public class GreetingEditorWidget extends Composite {
     void handleOkButtonClick(ClickEvent e) {
         Greeting greeting = driver.flush();
         greetingWidget.update(greeting);
+    }
+
+    @UiHandler("serverButton")
+    void handleServerButtonClick(ClickEvent e) {
+        if (greetingService == null) {
+            greetingService = GWT.create(GreetingService.class);
+        }
+        greetingService.greetServer(nameTextBox.getValue(), new AsyncCallback<String>() {
+            @Override
+            public void onFailure(Throwable caught) {
+                Window.alert("Error: " + caught.getMessage());
+            }
+
+            @Override
+            public void onSuccess(String result) {
+                Window.alert(result);
+            }
+        });
     }
 }
