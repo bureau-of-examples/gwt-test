@@ -7,5 +7,26 @@
     <g:HTMLPanel>
         <p>This is employee view.</p>
         <g:Button ui:field="getEmployeeCount" text="Get Count"/>
+        <g:Button ui:field="showEmployees" text="Show Employees"/>
+        <g:Button ui:field="getMessage" text="Show Message"/>
+        <hr/>
+
+        <g:HTMLPanel>
+            <div>
+                <div>
+                    <span>Message:</span>
+                    <g:InlineLabel ui:field="messageLabel"/>
+                </div>
+                <div>
+                    <span>By:</span>
+                    <g:InlineLabel ui:field="byLabel"/>
+                </div>
+                <div>
+                    <span>Time:</span>
+                    <g:InlineLabel ui:field="timeLabel"/>
+                </div>
+            </div>
+        </g:HTMLPanel>
+        <g:FlexTable ui:field="employeeList"/>
     </g:HTMLPanel>
 </ui:UiBinder>

@@ -10,10 +10,12 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.inject.ImplementedBy;
 import com.google.web.bindery.requestfactory.shared.Receiver;
+import zhy2002.gwt.client.model.EmployeeProxy;
 import zhy2002.gwt.client.navigation.PagePlace;
 import zhy2002.gwt.client.requestfactory.ExpensesRequestFactory;
 
 import javax.inject.Inject;
+import java.util.List;
 
 /**
  * Test employee domain object.
@@ -23,6 +25,10 @@ public class EmployeePresenter extends AbstractActivity {
     @ImplementedBy(EmployeeViewImpl.class)
     interface EmployeeView extends IsWidget {
         Button getGetEmployeeCountButton();
+
+        Button getShowEmployeesButton();
+
+        void updateEmployees(List<EmployeeProxy> employeeProxyList);
     }
 
     @Inject
@@ -50,7 +56,20 @@ public class EmployeePresenter extends AbstractActivity {
                 });
             }
         });
+
+        view.getShowEmployeesButton().addClickHandler(new ClickHandler() {
+            @Override
+            public void onClick(ClickEvent event) {
+                requestFactory.employeeRequest().findAllEmployees().fire(new Receiver<List<EmployeeProxy>>() {
+                    @Override
+                    public void onSuccess(List<EmployeeProxy> response) {
+                        view.updateEmployees(response);
+                    }
+                });
+            }
+        });
     }
+
 
 }
 

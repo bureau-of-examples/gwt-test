@@ -12,7 +12,7 @@ import java.util.List;
  * Employee related requests.
  */
 @Service(Employee.class)
-public interface EmployeeRequest extends RequestContext {
+public interface EmployeeRequestContext extends RequestContext {
 
     Request<Long> countEmployees();
 

@@ -2,7 +2,6 @@ package zhy2002.gwt.client.model;
 
 import com.google.web.bindery.requestfactory.shared.EntityProxy;
 import com.google.web.bindery.requestfactory.shared.ProxyFor;
-import zhy2002.gwt.server.domain.Address;
 import zhy2002.gwt.server.domain.Person;
 
 /**
@@ -27,7 +26,7 @@ public interface PersonProxy extends EntityProxy {
 
     void setLastName(String lastName);
 
-    Address getAddress();
+    AddressProxy getAddress();
 
-    void setAddress(Address address);
+    void setAddress(AddressProxy address);
 }

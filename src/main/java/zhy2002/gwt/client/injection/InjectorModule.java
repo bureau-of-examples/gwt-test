@@ -9,7 +9,7 @@ import zhy2002.gwt.client.navigation.MasterPageImpl;
 import zhy2002.gwt.client.requestfactory.ExpensesRequestFactory;
 
 
-public class InjectorModule extends AbstractGinModule {
+class InjectorModule extends AbstractGinModule {
 
     @Override
     protected void configure() {
