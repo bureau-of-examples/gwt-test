@@ -8,6 +8,7 @@ import com.google.inject.Provider;
 import zhy2002.gwt.client.page.EmployeePresenter;
 import zhy2002.gwt.client.page.GoodbyePresenter;
 import zhy2002.gwt.client.page.HelloPresenter;
+import zhy2002.gwt.client.page.PersonPresenter;
 
 public class AppActivityMapper implements ActivityMapper {
 
@@ -17,6 +18,8 @@ public class AppActivityMapper implements ActivityMapper {
     private Provider<GoodbyePresenter> goodbyePresenterProvider;
     @Inject
     private Provider<EmployeePresenter> employeePresenterProvider;
+    @Inject
+    private Provider<PersonPresenter> personPresenterProvider;
 
     @Override
     public Activity getActivity(Place place) {
@@ -34,10 +37,12 @@ public class AppActivityMapper implements ActivityMapper {
             }
         } else if (place instanceof PagePlace) {
             PagePlace pagePlace = (PagePlace) place;
-            if ("employee".equals(((PagePlace) place).getPageName())) {
+            if ("employee".equals(pagePlace.getPageName())) {
                 EmployeePresenter employeePresenter = employeePresenterProvider.get();
                 employeePresenter.init(pagePlace);
                 return employeePresenter;
+            } else if ("person".equals(pagePlace.getPageName())) {
+                return personPresenterProvider.get();
             }
         }
         return null;

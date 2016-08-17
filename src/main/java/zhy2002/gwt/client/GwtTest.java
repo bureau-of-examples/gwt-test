@@ -17,5 +17,10 @@ public class GwtTest implements EntryPoint {
     public void onModuleLoad() {
         MasterPage masterPage = Injector.INSTANCE.getMasterPage();
         RootPanel.get("appContainer").add(masterPage);
+
+//        ScriptInjector.fromString(AppResources.INSTANCE.jsResource().getText())
+//                .setRemoveTag(false)
+//                .setWindow(ScriptInjector.TOP_WINDOW)
+//                .inject();
     }
 }

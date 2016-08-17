@@ -73,4 +73,9 @@ public class MasterPageImpl extends Composite implements MasterPage {
     void handlePage3LinkClick(ClickEvent e) {
         placeController.goTo(new PagePlace("employee"));
     }
+
+    @UiHandler("page4Link")
+    void handlePage4LinkClick(ClickEvent e) {
+        placeController.goTo(new PagePlace("person"));
+    }
 }

@@ -22,6 +22,11 @@
                     Employee
                 </g:Anchor>
             </li>
+            <li>
+                <g:Anchor ui:field="page4Link">
+                    Person
+                </g:Anchor>
+            </li>
         </ul>
 
         <hr style="clear:both"/>
