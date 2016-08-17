@@ -5,8 +5,28 @@
     <ui:style>
     </ui:style>
     <g:HTMLPanel>
-        <div>
-            person view!
+        <div class="container">
+            <h3>Edit person</h3>
+            <form style="width:500px" class="form-horizontal">
+                <div class="form-group">
+                    <label for="firstNameTexBox" class="col-sm-3 control-label">First Name</label>
+                    <div class="col-sm-9">
+                        <g:TextBox ui:field="firstNameTextBox" addStyleNames="form-control"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="lastNameTextBox" class="col-sm-3 control-label">Last Name</label>
+                    <div class="col-sm-9">
+                        <g:TextBox ui:field="lastNameTextBox" addStyleNames="form-control"/>
+                    </div>
+                </div>
+                <hr/>
+                <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-9">
+                        <g:Button ui:field="okButton" addStyleNames="btn btn-primary">OK</g:Button>
+                    </div>
+                </div>
+            </form>
         </div>
     </g:HTMLPanel>
 </ui:UiBinder>
