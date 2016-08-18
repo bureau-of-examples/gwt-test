@@ -11,6 +11,7 @@ import com.google.gwt.user.client.ui.IsWidget;
 import com.google.inject.ImplementedBy;
 import com.google.web.bindery.requestfactory.shared.Receiver;
 import zhy2002.gwt.client.model.EmployeeProxy;
+import zhy2002.gwt.client.model.PersonProxy;
 import zhy2002.gwt.client.navigation.PagePlace;
 import zhy2002.gwt.client.requestfactory.ExpensesRequestFactory;
 
@@ -27,6 +28,8 @@ public class EmployeePresenter extends AbstractActivity {
         Button getGetEmployeeCountButton();
 
         Button getShowEmployeesButton();
+
+        Button getGetPersonButton();
 
         void updateEmployees(List<EmployeeProxy> employeeProxyList);
     }
@@ -45,6 +48,7 @@ public class EmployeePresenter extends AbstractActivity {
     @Override
     public void start(AcceptsOneWidget panel, EventBus eventBus) {
         panel.setWidget(view.asWidget());
+
         view.getGetEmployeeCountButton().addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
@@ -64,6 +68,18 @@ public class EmployeePresenter extends AbstractActivity {
                     @Override
                     public void onSuccess(List<EmployeeProxy> response) {
                         view.updateEmployees(response);
+                    }
+                });
+            }
+        });
+
+        view.getGetPersonButton().addClickHandler(new ClickHandler() {
+            @Override
+            public void onClick(ClickEvent event) {
+                requestFactory.personRequestContext().testMethod(1L).fire(new Receiver<PersonProxy>() {
+                    @Override
+                    public void onSuccess(PersonProxy response) {
+                        Window.alert("Person is:" + response.getFirstName() + " " + response.getLastName());
                     }
                 });
             }

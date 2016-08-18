@@ -3,17 +3,13 @@ package zhy2002.gwt.client.page;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.JsonUtils;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.http.client.*;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.*;
 import zhy2002.gwt.client.model.EmployeeProxy;
-import com.google.gwt.http.client.Request;
-import com.google.gwt.http.client.RequestBuilder;
-import com.google.gwt.http.client.RequestCallback;
-import com.google.gwt.http.client.RequestException;
-import com.google.gwt.http.client.Response;
 import zhy2002.gwt.client.model.Message;
 
 import java.util.List;
@@ -36,6 +32,9 @@ public class EmployeeViewImpl extends Composite implements EmployeePresenter.Emp
     Button showEmployees;
 
     @UiField
+    Button getPerson;
+
+    @UiField
     FlexTable employeeList;
 
     @UiField
@@ -53,6 +52,10 @@ public class EmployeeViewImpl extends Composite implements EmployeePresenter.Emp
 
     public Button getShowEmployeesButton() {
         return showEmployees;
+    }
+
+    public Button getGetPersonButton() {
+        return getPerson;
     }
 
     public void updateEmployees(List<EmployeeProxy> employeeProxyList) {

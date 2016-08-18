@@ -9,6 +9,7 @@
         <g:Button ui:field="getEmployeeCount" text="Get Count"/>
         <g:Button ui:field="showEmployees" text="Show Employees"/>
         <g:Button ui:field="getMessage" text="Show Message"/>
+        <g:Button ui:field="getPerson" text="Get Person"/>
         <hr/>
 
         <g:HTMLPanel>

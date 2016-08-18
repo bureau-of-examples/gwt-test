@@ -8,4 +8,6 @@ import com.google.web.bindery.requestfactory.shared.RequestFactory;
 public interface ExpensesRequestFactory extends RequestFactory {
 
     EmployeeRequestContext employeeRequest();
+
+    PersonRequestContext personRequestContext();
 }

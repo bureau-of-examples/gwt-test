@@ -24,10 +24,45 @@
             </div>
             <div>
                 <g:Button ui:field="okButton" text="Ok"/>
-                <g:Button ui:field="serverButton" text="Call server" />
+                <g:Button ui:field="serverButton" text="Call server"/>
             </div>
         </div>
         <hr/>
         <c:GreetingWidget ui:field="greetingWidget"/>
+        <g:Grid>
+            <g:row>
+                <g:cell>
+                    test1
+                </g:cell>
+                <g:cell>
+                    test2
+                </g:cell>
+            </g:row>
+            <g:row>
+                <g:cell>
+                    test3
+                </g:cell>
+                <g:cell>
+                    test4
+                </g:cell>
+            </g:row>
+        </g:Grid>
+
+        <g:TabLayoutPanel barUnit='EM' barHeight='3' width="400px" height="400px">
+            <g:tab>
+                <g:header size='7'>
+                    <b>HTML</b>
+                    header
+                </g:header>
+                <g:Label>This is tab page 1</g:Label>
+            </g:tab>
+            <g:tab>
+                <g:customHeader size='7'>
+                    <g:Label>Custom header</g:Label>
+                </g:customHeader>
+                <g:Label>This is tab page 2</g:Label>
+            </g:tab>
+        </g:TabLayoutPanel>
+
     </g:HTMLPanel>
 </ui:UiBinder>
