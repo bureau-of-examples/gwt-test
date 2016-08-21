@@ -14,5 +14,5 @@ public interface PersonRequestContext extends RequestContext {
 
     Request<PersonProxy> testMethod(Long id);
 
-    Request<Void> savePerson(PersonProxy personProxy);
+    Request<PersonProxy> savePerson(PersonProxy personProxy);
 }

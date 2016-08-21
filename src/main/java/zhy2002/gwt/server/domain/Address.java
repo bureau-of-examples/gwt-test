@@ -1,8 +1,11 @@
 package zhy2002.gwt.server.domain;
 
+import javax.persistence.Embeddable;
+
 /**
  * Embedded object.
  */
+@Embeddable
 public class Address {
     private String street1;
     private String street2;

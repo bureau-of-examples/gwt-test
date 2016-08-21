@@ -38,11 +38,12 @@ public class PersonServiceLocator implements ServiceLocator {
             return people.get(id);
         }
 
-        public void savePerson(Person person) {
+        public Person savePerson(Person person) {
             if (person.getId() == null) {
                 person.setId(idSequence.incrementAndGet());
             }
             people.put(person.getId(), person);
+            return person;
         }
     }
 }

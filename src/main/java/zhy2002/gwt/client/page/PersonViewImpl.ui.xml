@@ -1,6 +1,8 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
              xmlns:g="urn:import:com.google.gwt.user.client.ui"
+             xmlns:c="urn:import:zhy2002.gwt.client.widget"
+             xmlns:e="urn:import:com.google.gwt.editor.ui.client"
 >
     <ui:style>
     </ui:style>
@@ -11,19 +13,41 @@
                 <div class="form-group">
                     <label for="firstNameTexBox" class="col-sm-3 control-label">First Name</label>
                     <div class="col-sm-9">
-                        <g:TextBox ui:field="firstNameTextBox" addStyleNames="form-control"/>
+                        <e:ValueBoxEditorDecorator ui:field="firstNameTextBox">
+                            <e:valuebox>
+                                <g:TextBox addStyleNames="form-control"/>
+                            </e:valuebox>
+                        </e:ValueBoxEditorDecorator>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="lastNameTextBox" class="col-sm-3 control-label">Last Name</label>
                     <div class="col-sm-9">
-                        <g:TextBox ui:field="lastNameTextBox" addStyleNames="form-control"/>
+                        <e:ValueBoxEditorDecorator ui:field="lastNameTextBox">
+                            <e:valuebox>
+                                <g:TextBox addStyleNames="form-control"/>
+                            </e:valuebox>
+                        </e:ValueBoxEditorDecorator>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-skip-1 col-sm-10">
+                        <c:AddressEditorWidget ui:field="addressEditor"/>
                     </div>
                 </div>
                 <hr/>
                 <div class="form-group">
                     <div class="col-sm-offset-3 col-sm-9">
-                        <g:Button ui:field="okButton" addStyleNames="btn btn-primary">OK</g:Button>
+                        <g:Button ui:field="createButton">Create new</g:Button>
+                        <g:Button ui:field="saveButton">Save</g:Button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <g:TextBox ui:field="idTextBox"/>
+                    </div>
+                    <div class="col-sm-4">
+                        <g:Button ui:field="loadButton">Load</g:Button>
                     </div>
                 </div>
             </form>

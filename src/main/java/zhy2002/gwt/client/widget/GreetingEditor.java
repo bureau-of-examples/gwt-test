@@ -6,17 +6,14 @@ import com.google.gwt.user.client.ui.IntegerBox;
 import com.google.gwt.user.client.ui.TextBox;
 import zhy2002.gwt.client.model.Greeting;
 
-/**
- *
- */
-public class GreetingEditor implements Editor<Greeting> {
+class GreetingEditor implements Editor<Greeting> {
 
-    ValueBoxEditor<String> phraseEditor;
-    ValueBoxEditor<String> titleEditor;
-    ValueBoxEditor<String> nameEditor;
-    ValueBoxEditor<Integer> repeatEditor;
+    final ValueBoxEditor<String> phraseEditor;
+    final ValueBoxEditor<String> titleEditor;
+    final ValueBoxEditor<String> nameEditor;
+    final ValueBoxEditor<Integer> repeatEditor;
 
-    public GreetingEditor(
+    GreetingEditor(
             TextBox phraseValueBox,
             TextBox titleValueBox,
             TextBox nameValueBox,

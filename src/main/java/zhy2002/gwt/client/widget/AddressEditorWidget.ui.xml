@@ -1,0 +1,75 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:g="urn:import:com.google.gwt.user.client.ui"
+             xmlns:e="urn:import:com.google.gwt.editor.ui.client"
+>
+    <ui:style>
+    </ui:style>
+    <g:HTMLPanel>
+        <div class="panel panel-default">
+            <div class="panel-heading">Address Editor</div>
+            <div class="panel-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="street1TextBox" class="col-sm-3 control-label">Street1</label>
+                        <div class="col-sm-9">
+                            <e:ValueBoxEditorDecorator ui:field="street1TextBox">
+                                <e:valuebox>
+                                    <g:TextBox addStyleNames="form-control"/>
+                                </e:valuebox>
+                            </e:ValueBoxEditorDecorator>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="street2TextBox" class="col-sm-3 control-label">Street2</label>
+                        <div class="col-sm-9">
+                            <e:ValueBoxEditorDecorator ui:field="street2TextBox">
+                                <e:valuebox>
+                                    <g:TextBox addStyleNames="form-control"/>
+                                </e:valuebox>
+                            </e:ValueBoxEditorDecorator>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cityTextBox" class="col-sm-3 control-label">City</label>
+                        <div class="col-sm-9">
+                            <e:ValueBoxEditorDecorator ui:field="cityTextBox">
+                                <e:valuebox>
+                                    <g:TextBox addStyleNames="form-control"/>
+                                </e:valuebox>
+                            </e:ValueBoxEditorDecorator>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="stateTextBox" class="col-sm-3 control-label">State</label>
+                        <div class="col-sm-9">
+                            <e:ValueBoxEditorDecorator ui:field="stateTextBox">
+                                <e:valuebox>
+                                    <g:TextBox addStyleNames="form-control"/>
+                                </e:valuebox>
+                            </e:ValueBoxEditorDecorator>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="zipTextBox" class="col-sm-3 control-label">Zip</label>
+                        <div class="col-sm-9">
+                            <e:ValueBoxEditorDecorator ui:field="zipTextBox">
+                                <e:valuebox>
+                                    <g:TextBox addStyleNames="form-control"/>
+                                </e:valuebox>
+                            </e:ValueBoxEditorDecorator>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </g:HTMLPanel>
+</ui:UiBinder>
