@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * Created by ZHY on 11/10/2016.
  */
-public class CompositeUiNode extends UiNode {
+public abstract class CompositeUiNode extends UiNode {
 
     private Map<String, UiNode> children = new HashMap<>();
 
@@ -15,6 +15,7 @@ public class CompositeUiNode extends UiNode {
             throw new UiNodeConfigException("Ui Node must have a name to be a composite child.");
 
         node.setParent(this);
+        node.setContext(this.getContext());
         children.put(node.getNodeName(), node);
     }
 
