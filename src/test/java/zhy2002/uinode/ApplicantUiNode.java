@@ -18,6 +18,10 @@ public class ApplicantUiNode extends CompositeUiNode {
         return getChild("title");
     }
 
+    public ApplicantDescriptionUiNode getDescription() {
+        return getChild("description");
+    }
+
     public void addChangeRule(ChangeUiNodeRuleFactory<ApplicantUiNode> uiNodeRuleFactory) {
         UiNodeRule<ApplicantUiNode, ChangeUiNodeEvent> rule = uiNodeRuleFactory.createRule(this);
         addChangeRule(rule);

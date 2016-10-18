@@ -44,4 +44,12 @@ public class ApplicantTests {
         assertThat(applicant.getPreferredName().getValue(), equalTo("Mr Rambo"));
     }
 
+    @Test
+    public void canDoCascadeUpdate() {
+        applicant.getTitle().setValue("Mr");
+        applicant.getName().setValue("Rambo");
+
+        assertThat(applicant.getDescription().getValue(), equalTo("Mr Rambo's application"));
+    }
+
 }

@@ -11,7 +11,8 @@ import java.util.Map;
 public abstract class UiNodeContext {
 
     private enum ChangeState {
-        Idle
+        Idle,
+        RunningCycle
     }
 
     private static class Options {
@@ -20,8 +21,8 @@ public abstract class UiNodeContext {
     private final Map<Pair<UiNode, String>, ValueQueueNode> storage = new HashMap<>();
     private final Deque<UiNodeEvent> pendingEvents = new ArrayDeque<>();
     private final UiNodeRuleAgenda agenda = new UiNodeRuleAgenda();
-//    private final Options options = new Options();
-//    private ChangeState changeState = ChangeState.Idle;
+    //    private final Options options = new Options();
+    private ChangeState changeState = ChangeState.Idle;
 
     public String getLatestValue(UiNode uiNode, String property) {
 
@@ -41,10 +42,14 @@ public abstract class UiNodeContext {
         }
         storage.put(newHead.getKey(), newHead);
 
-        runChangeCycle();
+        if (changeState == ChangeState.Idle) {
+            runChangeCycle();
+        }
+
     }
 
     private void runChangeCycle() {
+        changeState = ChangeState.RunningCycle;
         while (!pendingEvents.isEmpty()) {
             UiNodeEvent event = pendingEvents.poll();
             agenda.addActivations(event);
@@ -53,5 +58,6 @@ public abstract class UiNodeContext {
                 activation.fire();
             }
         }
+        changeState = ChangeState.Idle;
     }
 }

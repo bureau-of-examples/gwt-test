@@ -21,10 +21,21 @@ public class LoanUiNodeFactory {
         preferredName.setNodeName("preferredName");
         applicant.addChild(preferredName);
 
+        ApplicantDescriptionUiNode description = new ApplicantDescriptionUiNode();
+        description.setNodeName("description");
+        applicant.addChild(description);
+
         applicant.addChangeRule(new ChangeUiNodeRuleFactory<ApplicantUiNode>() {
             @Override
             public UiNodeRule<ApplicantUiNode, ChangeUiNodeEvent> createRule(ApplicantUiNode hostUiNode) {
                 return new UpdatePreferredNameRule(hostUiNode);
+            }
+        });
+
+        applicant.addChangeRule(new ChangeUiNodeRuleFactory<ApplicantUiNode>() {
+            @Override
+            public UiNodeRule<ApplicantUiNode, ChangeUiNodeEvent> createRule(ApplicantUiNode hostUiNode) {
+                return new UpdateDescriptionRule(hostUiNode);
             }
         });
 
