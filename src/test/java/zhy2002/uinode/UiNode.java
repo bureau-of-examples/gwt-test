@@ -12,6 +12,7 @@ public abstract class UiNode {
     private UiNodeContext context;
     private UiNode parent;
     private List<UiNodeRule<? extends UiNode, ChangeUiNodeEvent>> rules = new ArrayList<>();
+    private List<UiNodeRule<? extends UiNode, ChangeUiNodeEvent>> listeners = new ArrayList<>();
 
     public String getNodeName() {
         return nodeName;
@@ -38,6 +39,15 @@ public abstract class UiNode {
     }
 
     protected void addChangeRule(UiNodeRule<? extends UiNode, ChangeUiNodeEvent> uiNodeRule) {
+        uiNodeRule.init();
         rules.add(uiNodeRule);
+    }
+
+    public void addListener(UiNodeRule<? extends UiNode, ChangeUiNodeEvent> uiNodeRule) {
+        listeners.add(uiNodeRule);
+    }
+
+    public List<UiNodeRule<? extends UiNode, ChangeUiNodeEvent>> getRules() {
+        return listeners;
     }
 }

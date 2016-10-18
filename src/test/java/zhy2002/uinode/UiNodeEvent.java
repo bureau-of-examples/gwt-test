@@ -13,4 +13,8 @@ public abstract class UiNodeEvent {
     public UiNode getUiNode() {
         return uiNode;
     }
+
+    public Iterable<UiNodeRule<? extends UiNode, ChangeUiNodeEvent>> getActiveRules() {
+        return uiNode.getRules();
+    }
 }

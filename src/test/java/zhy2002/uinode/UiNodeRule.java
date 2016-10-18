@@ -16,4 +16,6 @@ public abstract class UiNodeRule<T extends UiNode, E extends UiNodeEvent> {
     }
 
     public abstract void fire(E event);
+
+    public abstract void init();
 }

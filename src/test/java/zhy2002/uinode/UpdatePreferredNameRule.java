@@ -21,8 +21,14 @@ public class UpdatePreferredNameRule extends UiNodeRule<ApplicantUiNode, ChangeU
         return getHostUiNode().getPreferredName();
     }
 
+    @Override
+    public void init() {
+        getTitle().addListener(this);
+        getName().addListener(this);
+    }
+
     public void fire(ChangeUiNodeEvent event) {
-        if(getTitle().getValue() != null && getName().getValue() != null && getPreferredName().getValue() == null) {
+        if (getTitle().getValue() != null && getName().getValue() != null && getPreferredName().getValue() == null) {
             String preferredName = getTitle().getValue() + " " + getName().getValue();
             getPreferredName().setValue(preferredName);
         }

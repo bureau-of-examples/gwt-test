@@ -19,9 +19,9 @@ public abstract class UiNodeContext {
 
     private final Map<Pair<UiNode, String>, ValueQueueNode> storage = new HashMap<>();
     private final Deque<UiNodeEvent> pendingEvents = new ArrayDeque<>();
-    private final Options options = new Options();
-    private ChangeState changeState = ChangeState.Idle;
-
+    private final UiNodeRuleAgenda agenda = new UiNodeRuleAgenda();
+//    private final Options options = new Options();
+//    private ChangeState changeState = ChangeState.Idle;
 
     public String getLatestValue(UiNode uiNode, String property) {
 
@@ -45,6 +45,13 @@ public abstract class UiNodeContext {
     }
 
     private void runChangeCycle() {
-
+        while (!pendingEvents.isEmpty()) {
+            UiNodeEvent event = pendingEvents.poll();
+            agenda.addActivations(event);
+            while (!agenda.isEmpty()) {
+                UiNodeRuleActivation activation = agenda.pollActivation();
+                activation.fire();
+            }
+        }
     }
 }

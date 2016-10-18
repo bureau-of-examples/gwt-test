@@ -36,6 +36,7 @@ public class ApplicantTests {
         assertThat(applicant.getTitle().getValue(), equalTo(TEST_TITLE));
     }
 
+    @Test
     public void whenTitleOrNameChangesPreferredNameIsUpdated() {
         applicant.getTitle().setValue("Mr");
         applicant.getName().setValue("Rambo");
