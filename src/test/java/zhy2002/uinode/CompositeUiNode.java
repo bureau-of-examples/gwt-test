@@ -19,6 +19,16 @@ public abstract class CompositeUiNode extends UiNode {
         children.put(node.getNodeName(), node);
     }
 
+    public void recursivelyValidate() {
+        getContext().clearAllErrors();
+        getContext().clearFiredRule();
+        for (UiNode child : children.values()) {
+            child.validate();
+        }
+        validate();
+        getContext().clearFiredRule();
+    }
+
     @SuppressWarnings("unchecked")
     protected <C extends UiNode> C getChild(String name) {
         return (C) children.get(name);

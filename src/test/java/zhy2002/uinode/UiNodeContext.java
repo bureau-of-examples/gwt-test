@@ -8,6 +8,10 @@ import java.util.*;
 public abstract class UiNodeContext {
 
 
+    public void clearErrors(UiNode uiNode) {
+        nodeErrors.remove(uiNode);
+    }
+
     private enum ChangeState {
         Idle,
         RunningCycle
@@ -22,9 +26,26 @@ public abstract class UiNodeContext {
     private final Deque<UiNodeEvent> pendingEvents = new ArrayDeque<>();
     private final UiNodeRuleAgenda agenda = new UiNodeRuleAgenda();
     private final Set<UiNode> changedNodes = new HashSet<>();
+    private final Set<ValidationRule<?>> firedRules = new HashSet<>();
+
     //    private final Options options = new Options();
     private ChangeState changeState = ChangeState.Idle;
 
+    public void markRuleFired(ValidationRule<?> rule) {
+        firedRules.add(rule);
+    }
+
+    public void clearFiredRule() {
+        firedRules.clear();
+    }
+
+    public void clearAllErrors() {
+        nodeErrors.clear();
+    }
+
+    public boolean isRuleFired(ValidationRule<?> rule) {
+        return firedRules.contains(rule);
+    }
 
     public Object getLatestValue(UiNode uiNode, String property) {
 
@@ -100,6 +121,7 @@ public abstract class UiNodeContext {
             }
             committedValues.put(entry.getKey(), value);
             changedNodes.add(entry.getKey().getLeft());
+            entry.getKey().getLeft().clearErrors();
         }
         pendingValues.clear();
     }

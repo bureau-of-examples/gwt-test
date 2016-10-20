@@ -61,9 +61,11 @@ public class LoanUiNodeFactory {
 
         suburb.addChangeRule(new UpdateSuburbListRule());
 
-
-
         title.addValidationRule(new TitleIsValidRule(title));
+
+        NameOrPreferredNameIsRequiredRule rule = new NameOrPreferredNameIsRequiredRule(applicant);
+        name.addValidationRule(rule);
+        preferredName.addValidationRule(rule);
 
         return applicant;
     }

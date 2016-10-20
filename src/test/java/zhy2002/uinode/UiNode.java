@@ -57,19 +57,27 @@ public abstract class UiNode {
         return getContext().getErrors(this);
     }
 
+    public void clearErrors() {
+        getContext().clearErrors(this);
+    }
+
     public void addError(UiNodeError error) {
         getContext().addErrors(this, error);
     }
 
-    public void addValidationRule(TitleIsValidRule titleIsValidRule) {
-        validators.add(titleIsValidRule);
+    public void addValidationRule(ValidationRule<?> validationRule) {
+        validators.add(validationRule);
     }
 
     public void validate() {
         for (ValidationRule<?> validationRule : validators) {
+            if (getContext().isRuleFired(validationRule))
+                continue;
             validationRule.validate();
+            getContext().markRuleFired(validationRule);
         }
     }
+
 
     public void setProperty(String propertyName, Object value) {
         getContext().processChangeEvent(this, propertyName, value);

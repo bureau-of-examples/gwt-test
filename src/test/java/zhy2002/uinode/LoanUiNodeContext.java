@@ -8,6 +8,10 @@ import java.util.List;
  */
 public class LoanUiNodeContext extends UiNodeContext {
 
+    public LoanUiNodeContext() {
+
+    }
+
     private List<UiNode> rootUiNodes = new ArrayList<>();
 
     public void addRootUiNode(ApplicantUiNode applicant) {

@@ -12,9 +12,7 @@ public class ApplicantTests {
 
     @BeforeMethod
     public void setup() {
-        LoanUiNodeContext loanUiNodeContext = new LoanUiNodeContext();
         applicant = LoanUiNodeFactory.createApplicant();
-        loanUiNodeContext.addRootUiNode(applicant);
     }
 
     @Test
@@ -84,5 +82,20 @@ public class ApplicantTests {
         applicant.getState().setValue("NSW");
 
         assertThat(applicant.getSuburb().getValue(), nullValue());
+    }
+
+    @Test
+    public void nameOrPreferredNameIsRequired() {
+
+        applicant.recursivelyValidate();
+
+        assertThat(applicant.getName().getErrors(), hasSize(1));
+        assertThat(applicant.getPreferredName().getErrors(), hasSize(1));
+
+        applicant.getPreferredName().setValue("Mr Hank");
+
+        assertThat(applicant.getName().getErrors(), hasSize(0));
+        assertThat(applicant.getPreferredName().getErrors(), hasSize(0));
+
     }
 }
