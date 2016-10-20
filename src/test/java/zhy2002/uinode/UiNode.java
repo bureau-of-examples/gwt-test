@@ -11,8 +11,9 @@ public abstract class UiNode {
     private String nodeName;
     private UiNodeContext context;
     private UiNode parent;
-    private List<UiNodeRule<? extends UiNode, ChangeUiNodeEvent>> rules = new ArrayList<>();
-    private List<UiNodeRule<? extends UiNode, ChangeUiNodeEvent>> listeners = new ArrayList<>();
+    private final List<UiNodeRule<? extends UiNode, ChangeUiNodeEvent>> rules = new ArrayList<>();
+    private final List<UiNodeRule<? extends UiNode, ChangeUiNodeEvent>> listeners = new ArrayList<>();
+    private final List<ValidationRule<? extends UiNode>> validators = new ArrayList<>();
 
     public String getNodeName() {
         return nodeName;
@@ -38,7 +39,8 @@ public abstract class UiNode {
         return parent;
     }
 
-    protected void addChangeRule(UiNodeRule<? extends UiNode, ChangeUiNodeEvent> uiNodeRule) {
+    protected <N extends UiNode> void addChangeRule(UiNodeRule<N, ChangeUiNodeEvent> uiNodeRule) {
+        uiNodeRule.setHostUiNode((N) this);
         uiNodeRule.init();
         rules.add(uiNodeRule);
     }
@@ -49,5 +51,31 @@ public abstract class UiNode {
 
     public List<UiNodeRule<? extends UiNode, ChangeUiNodeEvent>> getRules() {
         return listeners;
+    }
+
+    public List<UiNodeError> getErrors() {
+        return getContext().getErrors(this);
+    }
+
+    public void addError(UiNodeError error) {
+        getContext().addErrors(this, error);
+    }
+
+    public void addValidationRule(TitleIsValidRule titleIsValidRule) {
+        validators.add(titleIsValidRule);
+    }
+
+    public void validate() {
+        for (ValidationRule<?> validationRule : validators) {
+            validationRule.validate();
+        }
+    }
+
+    public void setProperty(String propertyName, Object value) {
+        getContext().processChangeEvent(this, propertyName, value);
+    }
+
+    public Object getProperty(String propertyName) {
+        return getContext().getLatestValue(this, propertyName);
     }
 }

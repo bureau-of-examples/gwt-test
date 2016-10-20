@@ -6,10 +6,10 @@ package zhy2002.uinode;
 public class ChangeUiNodeEvent extends UiNodeEvent {
 
     private final String property;
-    private final String value;
+    private final Object value;
     private final Pair<UiNode, String> key;
 
-    public ChangeUiNodeEvent(UiNode uiNode, String property, String value) {
+    public ChangeUiNodeEvent(UiNode uiNode, String property, Object value) {
         super(uiNode);
 
         this.property = property;
@@ -21,7 +21,7 @@ public class ChangeUiNodeEvent extends UiNodeEvent {
         return property;
     }
 
-    public String getValue() {
+    public Object getValue() {
         return value;
     }
 

@@ -4,8 +4,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.instanceOf;
+import static org.hamcrest.Matchers.*;
 
 public class ApplicantTests {
 
@@ -52,4 +51,38 @@ public class ApplicantTests {
         assertThat(applicant.getDescription().getValue(), equalTo("Mr Rambo's application"));
     }
 
+    @Test
+    public void canUndoChanges() {
+
+        applicant.getName().setValue("Hello");
+        assertThat(applicant.getName().getValue(), nullValue());
+    }
+
+    @Test
+    public void canRestoreToOldValue() {
+        applicant.getName().setValue("Hello1");
+        applicant.getName().setValue("Hello");
+
+        assertThat(applicant.getName().getValue(), equalTo("Hello1"));
+    }
+
+    @Test
+    public void canReportError() {
+
+        applicant.getTitle().setValue("Bad");
+
+        assertThat(applicant.getTitle().getErrors(), hasSize(greaterThan(0)));
+    }
+
+    @Test
+    public void canClearInvalidValue() {
+
+        applicant.getSuburb().setValue("test");
+
+        assertThat(applicant.getSuburb().getValue(), equalTo("test"));
+
+        applicant.getState().setValue("NSW");
+
+        assertThat(applicant.getSuburb().getValue(), nullValue());
+    }
 }

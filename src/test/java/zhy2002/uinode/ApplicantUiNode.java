@@ -22,6 +22,18 @@ public class ApplicantUiNode extends CompositeUiNode {
         return getChild("description");
     }
 
+    public ApplicantResidentialStateUiNode getState() {
+        return getChild("state");
+    }
+
+    public ApplicantResidentialSuburbUiNode getSuburb() {
+        return getChild("suburb");
+    }
+
+    public ApplicantResidentialPostcodeUiNode getPostcode() {
+        return getChild("postcode");
+    }
+
     public void addChangeRule(ChangeUiNodeRuleFactory<ApplicantUiNode> uiNodeRuleFactory) {
         UiNodeRule<ApplicantUiNode, ChangeUiNodeEvent> rule = uiNodeRuleFactory.createRule(this);
         addChangeRule(rule);

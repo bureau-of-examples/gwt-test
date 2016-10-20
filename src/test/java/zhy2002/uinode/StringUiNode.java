@@ -6,7 +6,7 @@ package zhy2002.uinode;
 public class StringUiNode extends UiNode {
 
     public String getValue() {
-        return getContext().getLatestValue(this, "value");
+        return (String) getContext().getLatestValue(this, "value");
     }
 
     public void setValue(String value) {
